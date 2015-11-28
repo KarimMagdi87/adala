@@ -1,0 +1,56 @@
+body {
+    text-align:right;
+    overflow-x: hidden;
+    width: 98% auto;
+
+}
+.jumbotron{
+    margin-bottom:1px !important;
+    padding:10px !important;
+    height:150px;
+}
+footer{
+    background-color: #eee;
+    margin-top:150px;
+    width: 100% !important;
+    height:50px;
+    padding:20px;
+    bottom:0;
+    position: relative;
+}
+.navbar{
+    direction: rtl;
+}
+
+.dropdown-menu > li > a{
+    float:right;
+}
+
+.dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover{
+    width: 100% !important;
+    text-align: right !important;
+}
+
+.container{
+    direction: rtl;
+}
+
+
+.sel1Div{
+    float:right !important;
+}
+
+.sel1, .sel2{
+    display: none;
+}
+.documentsTable{
+    float:right;
+}
+
+.container .formadmin{
+    margin: 150px auto !important;
+}
+
+thead tr th{
+    text-align: right;
+}
