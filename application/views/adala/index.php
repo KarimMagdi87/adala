@@ -8,7 +8,6 @@
             <!--div class="col-lg-12 text-center" -->
                 <!--h1>اختر</h1-->
 			<div class="col-md-6 sel1Div">
-
 				<div class="form-group sel1">
 					<label for="sel1">تصنيف رئيسي  :</label>
 					<select class="form-control" id="sel1">

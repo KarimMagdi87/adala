@@ -46,4 +46,12 @@
 </header-->
 
 <!-- nav -->
-<?php $this->view('nav'); ?>
+
+
+<?php
+if(isset($username) && $username == 'admin'){
+$this->view('nav_backend');
+}else{
+    $this->view('nav');
+}
+?>

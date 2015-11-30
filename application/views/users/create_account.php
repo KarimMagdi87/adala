@@ -15,7 +15,7 @@
                         </div>
                     <?php } ?>
 
-                    <?php echo form_open('backend/execute'); ?>
+                    <?php echo form_open('users/execute'); ?>
                         <div class="form-group">
                             <input type="text" name="username" id="username" class="form-control" placeholder="اسم الأدمن" required autofocus>
                         </div>
@@ -32,12 +32,12 @@
                             <label><input id="bulk" name="bulk" type="checkbox" value="">مجموعات</label>
                         </div>
                        <div id="numtag">
-                           <div class="form-group">
+                           <!--div class="form-group">
                                <input type="number" id="accnumber" name="accnumber" class="form-control" placeholder="عدد التسجيلات"  required>
                            </div>
                            <div class="form-group">
                                <input type="tag" id="tag" name="tag" class="form-control" placeholder="التصنيف"  required>
-                           </div>
+                           </div-->
                        </div>
                         <div class="form-group">
                             <button class="btn btn-lg btn-primary btn-block" type="submit">تسجيل</button>
@@ -58,10 +58,18 @@
 
 <script type="text/javascript">
     $(function() {
-        $("#sdate").datepicker();
-        $("#edate").datepicker();
+        //$("#sdate").datepicker();
+        //$("#edate").datepicker();
+
+        var inputsBulk = '<div class="form-group">'+
+                         '<input type="number" id="accnumber" name="accnumber" class="form-control" placeholder="عدد التسجيلات"  required>'+
+                         '</div>'+
+                         '<div class="form-group">'+
+                         '<input type="tag" id="tag" name="tag" class="form-control" placeholder="التصنيف"  required>'+
+                         '</div>';
 
         $('#bulk').click(function() {
+            $("#numtag").append(inputsBulk);
             $("#numtag").toggle(this.checked);
         });
     });

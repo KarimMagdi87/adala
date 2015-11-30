@@ -1,3 +1,4 @@
+<?php if(isset($rowsTopicTypes) && isset($username)): ?>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
 
@@ -23,30 +24,30 @@
             </form-->
 
             <ul class="nav navbar-nav">
-
                 <li><a href="#">مرحبا <?php echo $username; ?></a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
 
                 <?php foreach($rowsTopicTypes as $r): ?>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $r->name; ?> <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                             <?php
-                                 foreach($rowsDocumentType as $sr):
-                                 if($r->topictypeid == $sr->topictypeid ):
-                             ?>
-                                 <li><a data-value="<?php echo $sr->documenttypeid; ?>" class="documenttype" id="<?php echo $sr->topictypeid; ?>" href="#"><?php echo $sr->name; ?></a></li>
-                             <?php
-                                 endif;
-                                 endforeach;
-                             ?>
-                        </ul>
-                    </li>
-                <?php endforeach; ?>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $r->name; ?> <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                 <?php
+                                     foreach($rowsDocumentType as $sr):
+                                     if($r->topictypeid == $sr->topictypeid ):
+                                 ?>
+                                     <li><a data-value="<?php echo $sr->documenttypeid; ?>" class="documenttype" id="<?php echo $sr->topictypeid; ?>" href="#"><?php echo $sr->name; ?></a></li>
+                                 <?php
+                                     endif;
+                                     endforeach;
+                                 ?>
+                            </ul>
+                        </li>
+                    <?php endforeach; ?>
 
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
 </nav>
+<?php endif; ?>

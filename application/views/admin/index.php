@@ -1,4 +1,4 @@
-<?php $this->view('admin/header'); ?>
+<?php $this->view('header'); ?>
 
 <!-- Page Content -->
 <div class="container">
@@ -33,4 +33,4 @@
 
 </div>
 
-<?php $this->view('admin/footer'); ?>
+<?php $this->view('footer'); ?>
