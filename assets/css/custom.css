@@ -48,9 +48,13 @@ footer{
 }
 
 .container .formadmin{
-    margin: 150px auto !important;
+    margin: 100px auto !important;
 }
 
 thead tr th{
     text-align: right;
+}
+
+#numtag{
+    display: none;
 }

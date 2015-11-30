@@ -26,13 +26,20 @@ class Admin_model extends CI_Model{
     {
         $username = htmlspecialchars($this->input->post('username'));
         $password = htmlspecialchars($this->input->post('password'));
-                    $data = array(
-                        'username'=>$username,
-                        'password'=>md5($password)
-                    );
-         $this->db->insert('users',$data);
+        $sdate = htmlspecialchars($this->input->post('sdate'));
+        $edate = htmlspecialchars($this->input->post('edate'));
+        $accnum = htmlspecialchars($this->input->post('accnumber'));
+        $tag = htmlspecialchars($this->input->post('tag'));
+        for($i=1; $i<=$accnum; $i++){
+            $data = array(
+                'username'=>$username.$i,
+                'password'=>md5($password),
+                'start_date'=> $sdate,
+                'end_date'=>$edate,
+                'tag'=>$tag
+            );
+            $this->db->insert('users',$data);
+
+        }
     }
-
-
-
 }

@@ -9,17 +9,23 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            <a class="navbar-brand" href="<?php echo site_url('backend/logout'); ?>">خروج</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-            <form class="navbar-form navbar-left" role="search">
+            <!--form class="navbar-form navbar-left" role="search">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search">
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+            </form-->
+
+            <ul class="nav navbar-nav">
+
+                <li><a href="#">مرحبا <?php echo $username; ?></a></li>
+            </ul>
 
             <ul class="nav navbar-nav navbar-right">
 

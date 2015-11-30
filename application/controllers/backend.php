@@ -13,10 +13,10 @@ class Backend extends CI_Controller {
             $session_data = $this->session->userdata('logged_in');
             $data['username'] = $session_data['username'];
             $this->load->view('admin/backend', $data);
-            }
+        }
         else{
         //If no session, redirect to login page
-        redirect('admin', 'refresh');
+        redirect(base_url(), 'refresh');
         }
     }
 
@@ -27,7 +27,7 @@ class Backend extends CI_Controller {
     public function logout(){
         $this->session->unset_userdata('logged_in');
         session_destroy();
-        redirect('admin', 'refresh');
+        redirect(base_url(), 'refresh');
     }
 
     public function create(){
@@ -38,7 +38,7 @@ class Backend extends CI_Controller {
         }
         else{
             //If no session, redirect to login page
-            redirect('admin', 'refresh');
+            redirect(base_url(), 'refresh');
         }
     }
 
@@ -48,6 +48,12 @@ class Backend extends CI_Controller {
 
         $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[users.username]');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
+        $this->form_validation->set_rules('sdate', 'Start Date', 'trim|required');
+        $this->form_validation->set_rules('edate', 'End Date', 'trim|required|callback_compareDates');
+        $this->form_validation->set_rules('accnumber', 'Accounts number', 'trim|required|numeric|max_length[4]|callback_max_pst');
+        $this->form_validation->set_rules('tag', 'Tag', 'trim|required|is_unique[users.tag]');
+
+        $this->form_validation->set_message('is_unique', 'هذا الاسم موجود في قاعدة البيانات , الرجاء اختيار اسم اخر');
 
         if($this->form_validation->run() == FALSE)
         {
@@ -68,6 +74,25 @@ class Backend extends CI_Controller {
             redirect('backend', 'refresh');
         }
 
+    }
+
+    public function compareDates(){          //compare date validation
+        $start = htmlspecialchars(strtotime($this->input->post('sdate')));
+        $end = htmlspecialchars(strtotime($this->input->post('edate')));
+        if ($start > $end) {
+            $this->form_validation->set_message('compareDates', 'تاريخ الانتهاء لابد أن يكون أكبر من تاريخ الابتداء');
+            return false;
+        }
+    }
+
+    public function max_pst()
+    {
+        if($this->input->post('accnumber')<1)
+        {
+            $this->form_validation->set_message('max_pst','الرجاء ادخال رقم واحد أو أكثر في عدد التسجيلات');
+            return FALSE;
+        }
+        return TRUE;
     }
 
 

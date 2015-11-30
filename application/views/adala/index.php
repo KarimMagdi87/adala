@@ -1,7 +1,7 @@
 <?php $this->view('header'); ?>
 
     <!-- Page Content -->
-    <div class="container bcontainer" style="min-height:310px;">
+    <div class="container bcontainer" style="min-height:308px;">
 	
 
         <div class="row">

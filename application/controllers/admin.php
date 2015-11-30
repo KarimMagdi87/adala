@@ -32,7 +32,17 @@ class Admin extends CI_Controller{
         else
         {
             //Go to private area
-            redirect('backend', 'refresh');
+
+            $session_data = $this->session->userdata('logged_in');
+            $data['username'] = $session_data['username'];
+            //echo $data['username']; exit;
+            if($data['username'] == "admin"){
+                redirect('backend', 'refresh');
+            }
+            else{
+                redirect('adala', 'refresh');
+            }
+
         }
     }
 
