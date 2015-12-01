@@ -1,6 +1,6 @@
-<?php $this->view('admin/header'); ?>
+<?php $this->view('header'); ?>
 
-<?php $this->view('admin/nav'); ?>
+<?php //$this->view('admin/nav'); ?>
 
     <!-- Page Content -->
     <div class="container">
@@ -54,12 +54,12 @@
 
 
 
-<?php $this->view('admin/footer'); ?>
+<?php $this->view('footer'); ?>
 
 <script type="text/javascript">
     $(function() {
-        //$("#sdate").datepicker();
-        //$("#edate").datepicker();
+        $("#sdate").datepicker();
+        $("#edate").datepicker();
 
         var inputsBulk = '<div class="form-group">'+
                          '<input type="number" id="accnumber" name="accnumber" class="form-control" placeholder="عدد التسجيلات"  required>'+

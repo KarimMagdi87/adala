@@ -33,6 +33,7 @@ footer{
 
 .container{
     direction: rtl;
+    margin-top:100px;
 }
 
 
@@ -56,5 +57,11 @@ thead tr th{
 }
 
 #numtag{
+    display: none;
+}
+
+.msgsuccess{
+    margin: 0 auto !important;
+    text-align: center;
     display: none;
 }

@@ -5,10 +5,14 @@ class Users extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->helper(array('form'));
-        $this->load->model('admin_model','',TRUE);
+        $this->load->model('users_model','',TRUE);
+        $this->session->set_flashdata('feedback', 'تم بنجاح');
     }
 
     public function index(){
+
+        $data['rowUsers'] =  $this->users_model->getUsers();
+
         if($this->session->userdata('logged_in')){
             $session_data = $this->session->userdata('logged_in');
             $data['username'] = $session_data['username'];
@@ -21,6 +25,7 @@ class Users extends CI_Controller{
     }
 
     public function create(){
+
         if($this->session->userdata('logged_in')){
             $session_data = $this->session->userdata('logged_in');
             $data['username'] = $session_data['username'];
@@ -73,7 +78,7 @@ class Users extends CI_Controller{
         else
         {
             //Go to private area
-            $this->admin_model->save_account();
+            $this->users_model->save_account();
             redirect('backend', 'refresh');
         }
 
@@ -89,6 +94,7 @@ class Users extends CI_Controller{
         }
     }
 
+
     public function max_pst(){
         if($this->input->post('accnumber')<1)
         {
@@ -96,5 +102,38 @@ class Users extends CI_Controller{
             return FALSE;
         }
         return TRUE;
+    }
+
+
+    public function enablAll(){
+        if(!isset($_POST['id'])){
+            redirect(base_url(), 'refresh');
+        }else {
+            $id = $_POST['id'];
+            $this->users_model->enablAll($id);
+            echo $this->session->flashdata('feedback');
+        }
+    }
+
+    public function enablCopy(){
+        if(!isset($_POST['id']) || !isset($_POST['val'])){
+            redirect(base_url(), 'refresh');
+        }else {
+            $id = $_POST['id'];
+            $val = $_POST['val'];
+            $this->users_model->enablCopy($id, $val);
+            echo $this->session->flashdata('feedback');
+        }
+    }
+
+    public function enablDownload(){
+        if(!isset($_POST['id']) || !isset($_POST['val'])){
+            redirect(base_url(), 'refresh');
+        }else {
+            $id = $_POST['id'];
+            $val = $_POST['val'];
+            $this->users_model->enablDownload($id, $val);
+            echo $this->session->flashdata('feedback');
+        }
     }
 }

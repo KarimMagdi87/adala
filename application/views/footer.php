@@ -17,9 +17,33 @@
 
 <script type="text/javascript" src="https://cdn.datatables.net/r/dt/dt-1.10.8/datatables.min.js"></script>
 
-<script>$(document).ready(function() {
-        $('#example').dataTable( );
-    });</script>
+<script src="<?php echo base_url();?>assets/js/bootstrap-datepicker.js"></script>
+
+<script type="text/javascript">
+    $( document ).ready(function() {
+        $('.btn').tooltip();
+
+        $('#example').DataTable({
+            language: {
+                "sProcessing": "جاري التحميل...",
+                "sLengthMenu": "أظهر مُدخلات _MENU_",
+                "sZeroRecords": "لم يُعثر على أية سجلات",
+                "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مُدخل",
+                "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجلّ",
+                "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                "sInfoPostFix": "",
+                "sSearch": "ابحث:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "الأول",
+                    "sPrevious": "السابق",
+                    "sNext": "التالي",
+                    "sLast": "الأخير"
+                }
+            }
+        });
+    });
+</script>
 
 
 </body>

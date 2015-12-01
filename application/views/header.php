@@ -46,12 +46,19 @@
 </header-->
 
 <!-- nav -->
-
-
 <?php
 if(isset($username) && $username == 'admin'){
-$this->view('nav_backend');
-}else{
-    $this->view('nav');
+    $this->view('nav_backend');
+    }else{
+        $this->view('nav');
 }
 ?>
+
+<div clas="row">
+    <div class="col-md-12 msgsuccess">
+        <div class="alert alert-success">
+            <a title="close" aria-label="close" data-dismiss="alert" class="close" href="#">×</a>
+            <strong>تم بنجاح</strong>
+        </div>
+    </div>
+</div>
