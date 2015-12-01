@@ -77,4 +77,21 @@ class Users_model extends CI_Model{
         $this -> db -> where("id", $id);
         return $this -> db -> update('users', $data);
     }
+
+    public function enablUser($id, $val){
+        if($val == 0){
+            $data = array('user_status'=> 1);
+        }else{
+            $data = array('user_status'=> 0);
+        }
+        $this -> db -> where("id", $id);
+        return $this -> db -> update('users', $data);
+    }
+
+
+    public function resetPassword($id){
+        $data = array('password'=> md5('admin'));
+        $this -> db -> where("id", $id);
+        return $this -> db -> update('users', $data);
+    }
 }

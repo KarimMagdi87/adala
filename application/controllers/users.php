@@ -136,4 +136,35 @@ class Users extends CI_Controller{
             echo $this->session->flashdata('feedback');
         }
     }
+
+    public function enablUser(){
+        if(!isset($_POST['id']) || !isset($_POST['val'])){
+            redirect(base_url(), 'refresh');
+        }else {
+            $id = $_POST['id'];
+            $val = $_POST['val'];
+            $this->users_model->enablUser($id, $val);
+            echo $this->session->flashdata('feedback');
+        }
+    }
+
+    public function resetPassword(){
+        if(!isset($_POST['id'])){
+            redirect(base_url(), 'refresh');
+        }else {
+            $id = $_POST['id'];
+            $this->users_model->resetPassword($id);
+            echo $this->session->flashdata('feedback');
+        }
+    }
+
+    public function deleteUser(){
+        if(!isset($_POST['id'])){
+            redirect(base_url(), 'refresh');
+        }else {
+            $id = $_POST['id'];
+            $this -> db -> where("id", $id);
+            return $this -> db -> delete('users');
+        }
+    }
 }

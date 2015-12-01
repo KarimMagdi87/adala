@@ -59,11 +59,23 @@ class Admin extends CI_Controller{
             $sess_array = array();
             foreach($result as $row)
             {
-                $sess_array = array(
-                    'id' => $row->id,
-                    'username' => $row->username
-                );
-                $this->session->set_userdata('logged_in', $sess_array);
+                if(strtotime(date('Y-m-d')) > $row->end_date){
+                    $this->form_validation->set_message('check_database', 'تم انتهاء صلاحية الدخول , الرجاء الاتصال بالأدمن');
+                    return false;
+
+                }else if($row->user_status != 1){
+                    $this->form_validation->set_message('check_database', 'عفوا أنت غير مفعل الآن , الرجاء الإتصال بالأدمن');
+                    return false;
+
+                } else{
+                    $sess_array = array(
+                        'id' => $row->id,
+                        'username' => $row->username,
+                        'cpy_status' => $row->cpy_status,
+                        'dnld_status' => $row->dnld_status
+                    );
+                    $this->session->set_userdata('logged_in', $sess_array);
+                }
             }
             return TRUE;
         }

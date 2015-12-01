@@ -44,6 +44,10 @@
         </div>
     </div>
 </header-->
+<?php if (isset($cpy_status) && isset($dnld_status)) { ?>
+<input type="hidden" value="<?php echo $cpy_status; ?>" id="cpy_status"/>  <!-- save copy status from session -->
+<input type="hidden" value="<?php echo $dnld_status; ?>" id="dnld_status"/>  <!-- save download status from session -->
+<?php } ?>
 
 <!-- nav -->
 <?php

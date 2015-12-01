@@ -104,9 +104,16 @@
 
 
 			var documentTypeId= $(this).data("value");
-			//alert(documentTypeId);
-			var table='<table id="example" class="display" cellspacing="0" width="100%">'+
-				      '<thead><tr><th>المادة</th><th>الرقم</th><th>السنة</th></tr></thead><tbody>';
+			var dnld_status = $("#dnld_status").val();
+			var table ="";
+
+			if(dnld_status == 0){
+				 table +='<table id="example" class="display" cellspacing="0" width="100%">'+
+					'<thead><tr><th>المادة</th><th>الرقم</th><th>السنة</th></tr></thead><tbody>';
+			}else{
+				table +='<table id="example" class="display" cellspacing="0" width="100%">'+
+					'<thead><tr><th>المادة</th><th>الرقم</th><th>السنة</th><th>تحميل</th></tr></thead><tbody>';
+			}
 
 			$.ajax({    // To Display documents in table
 				type : "POST",
@@ -116,9 +123,17 @@
 				dataType:'JSON',
 				success : function(response) {
 					$.each(response, function (i, item) {
-						table += '<tr><td><a data-toggle="modal" data-target="#myModal" class="tddocument" id="'+item.documentId+'" href="#">"'+item.title+'"</a></td>'+
-								 '<td>"'+item.number+'"</td>'+
-								 '<td>"'+item.year+'"</td></tr>';
+						if(dnld_status == 0){
+							table += '<tr><td><a data-toggle="modal" data-target="#myModal" class="tddocument" id="'+item.documentId+'" href="#">"'+item.title+'"</a></td>'+
+								'<td>"'+item.number+'"</td>'+
+								'<td>"'+item.year+'"</td></tr>';
+						}else{
+							table += '<tr><td><a data-toggle="modal" data-target="#myModal" class="tddocument" id="'+item.documentId+'" href="#">"'+item.title+'"</a></td>'+
+								'<td>"'+item.number+'"</td>'+
+								'<td>"'+item.year+'"</td>'+
+						     	'<td><a id="'+ item.documentid +'" href="#">تحميل</a></td></tr>';
+						}
+
 					});
 					table += '</tbody></table>';
 					$(".documentsTable").append(table);

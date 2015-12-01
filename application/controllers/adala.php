@@ -15,6 +15,9 @@ class Adala extends CI_Controller{
         if($this->session->userdata('logged_in')){
             $session_data = $this->session->userdata('logged_in');
             $data['username'] = $session_data['username'];
+            $data['dnld_status'] = $session_data['dnld_status'];
+            $data['cpy_status'] = $session_data['cpy_status'];
+            //echo $data['dnld_status']; echo $data['cpy_status']; exit;
             $this->load->view('adala/index', $data);
         }
         else{
