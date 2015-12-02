@@ -72,6 +72,7 @@
 <?php $this->view('footer'); ?>
 
 <script type="text/javascript">
+
     $(document).ready(function () {
         $(".documenttype").on("click", function (e) {
             e.preventDefault();

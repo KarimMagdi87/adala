@@ -95,4 +95,18 @@ class Adala_model extends CI_Model
             return FALSE;
         }
     }
+
+    public function getDocumentPath($documentId)
+    {
+        $q = $this -> db -> query("SELECT * FROM documentfile WHERE documentid =". $documentId);
+
+        if ($q -> num_rows() > 0) {
+            foreach ($q->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        } else {
+            return FALSE;
+        }
+    }
 }
