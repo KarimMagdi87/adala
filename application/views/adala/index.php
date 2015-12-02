@@ -131,7 +131,7 @@
 							table += '<tr><td><a data-toggle="modal" data-target="#myModal" class="tddocument" id="'+item.documentId+'" href="#">"'+item.title+'"</a></td>'+
 								'<td>"'+item.number+'"</td>'+
 								'<td>"'+item.year+'"</td>'+
-						     	'<td><a id="'+ item.documentid +'" href="#">تحميل</a></td></tr>';
+						     	'<td><button value="'+item.documentId+'" type="button" class="btn btn-warning dnld">تحميل</button></td></tr>';
 						}
 
 					});
@@ -215,6 +215,27 @@
 				}
 			});
 
+		});
+
+		$(document).on("click",'.dnld', function(e){
+			var documentId = $(this).val();
+			$.ajax({
+				type : "POST",
+				url : "<?php echo base_url('index.php/adala/downloadDocumentFile'); ?>",    //Get Primary topics
+				data : "documentId="+documentId,
+				cache: false,
+				dataType:'JSON',
+				success : function(response) {
+
+					$.each(response, function (i, item) {
+						var file = item.fileName;
+						var name = "asd.txt";
+						window.location = file;
+					});
+
+
+				}
+			});
 		});
 
 

@@ -4,9 +4,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Adala extends CI_Controller{
 
+    function __construct(){
+
+        parent::__construct();
+        $this->load->model('adala_model','',TRUE);
+        $this->load->helper('download');
+    }
+
     public function index(){
 
-        $this -> load -> model('adala_model');
+        //$this -> load -> model('adala_model');
 
         $data['rowsTopicTypes'] = $this -> adala_model -> getTopicTypes();
 
@@ -36,7 +43,7 @@ class Adala extends CI_Controller{
             $id = $_POST['id'];
             $returnArray = array();
 
-            $this -> load -> model('adala_model');
+            //$this -> load -> model('adala_model');
             $data['rows'] = $this -> adala_model -> getTypes($id);
 
             foreach($data as $d){
@@ -61,7 +68,7 @@ class Adala extends CI_Controller{
             $primaryId = $_POST['primaryId'];
             $returnArray = array();
 
-            $this -> load -> model('adala_model');
+            //$this -> load -> model('adala_model');
             $data['rows'] = $this -> adala_model -> getSecondTypes($primaryId, $topicId);
             //print_r($data);
             foreach($data as $d){
@@ -84,7 +91,7 @@ class Adala extends CI_Controller{
             $documentTypeId = $_POST['documentTypeId'];
             $returnArray = array();
 
-            $this->load->model('adala_model');
+            //$this->load->model('adala_model');
             $data['rows'] = $this->adala_model->getDocuments($documentTypeId);
             //print_r($data); exit;
             foreach ($data as $d) {
@@ -107,7 +114,7 @@ class Adala extends CI_Controller{
             $documentId = $_POST['documentId'];
             $returnArray = array();
             //echo $documentId;
-            $this->load->model('adala_model');
+            //$this->load->model('adala_model');
             $data['rows'] = $this->adala_model->getDocumentDisplay($documentId);
             //print_r($data); exit;
             foreach ($data as $d) {
@@ -119,6 +126,43 @@ class Adala extends CI_Controller{
                 }
             }
             echo json_encode($returnArray);
+        }
+    }
+
+
+    public function downloadDocumentFile(){
+        $this->load->helper('download');
+        $this->load->helper('file');
+
+        if(!isset($_POST['documentId'])){
+            redirect(base_url(), 'refresh');
+        }else {
+            $documentId = $_POST['documentId'];
+            $returnArray = array();
+            //echo $documentId;
+            $data['rows'] = $this->adala_model->getDocumentPath($documentId);
+            //print_r($data); exit;
+            foreach ($data as $d) {
+                foreach ($d as $ob) {
+                    $arr['documentID'] = $ob->	DocumentId;
+                    $arr['fileName'] = $ob->FileName;
+                    array_push($returnArray, $arr);
+                }
+            }
+
+            //$file = $arr['fileName'];
+            //$name = $arr['documentID'];
+            // force_download($name, $file);
+            echo json_encode($returnArray);
+
+            //set the textfile's content
+            $data = file_get_contents($arr['fileName']);
+            //set the textfile's name
+            $name = $arr['documentID']."txt";
+            //use this function to force the session/browser to download the created file
+            //force_download($name, $data);
+            //exit;
+
         }
     }
 
