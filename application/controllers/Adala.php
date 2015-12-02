@@ -21,7 +21,7 @@ class Adala extends CI_Controller{
             $this->load->view('adala/index', $data);
         }
         else{
-            //If no session, redirect to login page
+            // If no session, redirect to login page
             redirect(base_url(), 'refresh');
         }
 
