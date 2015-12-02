@@ -59,7 +59,7 @@ class Admin extends CI_Controller{
             $sess_array = array();
             foreach($result as $row)
             {
-                if(strtotime(date('Y-m-d')) > $row->end_date){
+                if(strtotime(date('Y-m-d')) > strtotime($row->end_date)){
                     $this->form_validation->set_message('check_database', 'تم انتهاء صلاحية الدخول , الرجاء الاتصال بالأدمن');
                     return false;
 

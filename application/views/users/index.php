@@ -23,8 +23,8 @@
               <?php foreach($rowUsers as $ru): ?>
               <tr>
                   <td><?php echo $ru->username; ?></td>
-                  <td><?php echo date('d-m-Y', $ru->start_date); ?></td>
-                  <td><?php echo date('d-m-Y', $ru->end_date); ?></td>
+                  <td><?php echo date('d-m-Y', strtotime($ru->start_date)); ?></td>
+                  <td><?php echo date('d-m-Y', strtotime($ru->end_date)); ?></td>
                   <td><?php echo $ru->tag; ?></td>
                   <td><?php if($ru->cpy_status == 0){echo "لا";}  else{echo "نعم";} ?></td>
                   <td><?php if($ru->dnld_status == 0) {echo "لا";}  else{echo "نعم";} ?></td>
