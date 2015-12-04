@@ -108,9 +108,14 @@ class Topics extends CI_Controller {
     }
     
     public function delete($id) {
-        $this->topic_model->delete_topic($id);
+        $result = $this->topic_model->delete_topic($id);
         
-        $this->session->set_flashdata('success', "Topic #$id has been deleted successfully");
+        if(false === $result) {
+            $this->session->set_flashdata('error', "Topic #$id has been assigned to other topics");
+        } else {
+            $this->session->set_flashdata('success', "Topic #$id has been deleted successfully");
+        }
+        
         redirect('topics/index');
     }
 }

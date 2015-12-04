@@ -36,6 +36,13 @@ class TopicType_model extends CI_Model {
     }
     
     public function delete_topic_type($id) {
-        return $this->db->delete('topictype', array('TopicTypeId' => $id));
+        $documentTypes = $this->db->get('documenttype', array('TopicTypeId' => $id))->result_array();
+        $topics = $this->db->get('topic', array('TopicTypeId' => $id))->result_array();
+        
+        if(count($topics) == 0 && 0 == count($documentTypes)) {
+            return $this->db->delete('topictype', array('TopicTypeId' => $id));
+        } else {
+            return false;
+        }
     }
 }

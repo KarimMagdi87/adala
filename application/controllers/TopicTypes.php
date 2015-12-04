@@ -59,9 +59,13 @@ class TopicTypes extends CI_Controller {
     }
 
     public function delete($id) {
-        $this->topicType_model->delete_topic_type($id);
+        $result = $this->topicType_model->delete_topic_type($id);
 
-        $this->session->set_flashdata('success', "Topic type #$id has been deleted successfully");
+        if(false === $result) {
+            $this->session->set_flashdata('error', "Topic type #$id has been assigned to topics or document types");
+        } else {
+            $this->session->set_flashdata('success', "Topic type #$id has been deleted successfully");
+        }
         redirect('topic-types/index');
     }
 

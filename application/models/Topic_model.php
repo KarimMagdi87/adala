@@ -38,7 +38,13 @@ class Topic_model extends CI_Model {
     }
     
     public function delete_topic($id) {
-        return $this->db->delete('topic', array('TopicId' => $id));
+        $topics = $this->db->get('topic', array('ParentTopicId' => $id))->result_array();
+        
+        if(0 == count($topics)) {
+            return $this->db->delete('topic', array('TopicId' => $id));
+        } else {
+            return false;
+        }
     }
 
 }
