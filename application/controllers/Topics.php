@@ -41,13 +41,13 @@ class Topics extends CI_Controller {
     }
     
     public function view($id = NULL) {
-        $data['topic'] = $this->topic_model->get_topics(false, false, $id);
+        $topic = $this->topic_model->get_topics(false, false, $id);
 
-        if (empty($data['topic'])) {
+        if (empty($topic)) {
             show_404();
         }
 
-        $this->load->view('topics/view', $data);
+        echo json_encode($topic);
     }
 
     public function create() {

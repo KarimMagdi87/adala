@@ -30,15 +30,13 @@ class TopicTypes extends CI_Controller {
     }
 
     public function view($id = NULL) {
-        $data['topicType'] = $this->topicType_model->get_topicTypes(false, false, $id);
+        $topicType = $this->topicType_model->get_topicTypes(false, false, $id);
 
-        if (empty($data['topicType'])) {
+        if (empty($topicType)) {
             show_404();
         }
 
-        $data['title'] = $data['topicType']['Name'];
-
-        $this->load->view('topicTypes/view', $data);
+        echo json_encode($topicType);
     }
 
     public function create() {

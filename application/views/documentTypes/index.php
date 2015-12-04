@@ -82,7 +82,6 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-
     
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -108,7 +107,7 @@
     $(document).ready(function () {
         $('#documentTypes').DataTable();
         
-        
+        // Render document type modal
         $(document).on("click", '.tddocument', function (e) {
             e.preventDefault();
             $(".modal-body").html('');
@@ -116,17 +115,16 @@
 
             $.ajax({
                 type: "GET",
-                url: "<?php echo base_url('document-types/')?>" + '/'+ $(this).attr("id"),
+                url: "<?php echo base_url('document-types/')?>/" + $(this).attr("id"),
                 cache: false,
                 dataType: 'JSON',
                 success: function (response) {
                     
-                    $.each(response, function (i, item) {
-                        if (item.title != " " || item.text != " ") {
-                            string += '<h4>' + i + ':</h4><p>' + item + '</p><br/>';
-                        }
-
-                    });
+                    var string = '<div><h4>Name:</h4><span>' + response.Name + '</span></div>'
+                    + '<div><h4>Document Type:</h4><span>' + response.DocumentTypeId + '</span></div>'
+                    + '<div><h4>Topic Type:</h4><span>' + response.TopicTypeId + '</span></div>'
+                    + '<div><h4>Color:</h4><span>' + response.Color + '</span></div>';
+                    
                     $(".modal-body").append(string);
                 }
             });
