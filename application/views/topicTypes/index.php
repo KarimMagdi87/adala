@@ -18,30 +18,6 @@
         ?>
     </div>
 
-    <div class="row">
-        <form action="<?php echo site_url('document-types/filter'); ?>">
-            <!--div class="col-lg-12 text-center" -->
-            <!--h1>اختر</h1-->
-            <div class="col-md-3 sel1Div">
-                <div class="form-group">
-                    <label for="Name">الأسم  :</label>
-                    <input type="text" class="form-control" placeholder="Name" name="name" />
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="Color">اللون</label>
-                    <input type="text"  class="form-control" placeholder="Color" name="color" />
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <input type="submit" value="Filter" />
-            </div>
-        </form>
-    </div>
-
     <table id="topicTypes" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
