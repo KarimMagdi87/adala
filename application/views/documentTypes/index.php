@@ -1,6 +1,7 @@
-<?php $this->view('header'); ?>
+<?php $this->view('backend_header'); ?>
 <!-- Page Content -->
-<div class="container bcontainer" style="min-height:308px;">
+<div id="page-content-wrapper">
+    <div class="container-fluid">
     <h2>Document Types List</h2>
 
     <a href="<?php echo site_url('document-types/create'); ?>">Create</a>
@@ -63,7 +64,7 @@
             </div>
         </div>
     </div>
-
+</div>
 </div>
 <?php $this->view('footer'); ?>
 

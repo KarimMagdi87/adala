@@ -1,7 +1,7 @@
-<?php //$this->view('admin/header'); ?>
-<?php $this->view('header'); ?>
-
-<?php //$this->view('admin/nav'); ?>
+<?php $this->view('backend_header'); ?>
+<!-- Page Content -->
+<div id="page-content-wrapper">
+    <div class="container-fluid">
 
     <!-- Page Content -->
     <div class="container" style="min-height:308px;">
@@ -14,5 +14,5 @@
 
 
     </div>
-
+    </div>
 <?php $this->view('footer'); ?>

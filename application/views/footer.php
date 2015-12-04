@@ -5,7 +5,7 @@
         </footer>
     </div>
 </div>
-
+</div>
 
 <!-- /.container -->
 
@@ -42,6 +42,11 @@
                 }
             }
         });
+    });
+    
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $(".container bcontainer").toggleClass("toggled");
     });
 </script>
 

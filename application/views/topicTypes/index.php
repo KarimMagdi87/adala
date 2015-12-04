@@ -1,6 +1,8 @@
-<?php $this->view('header'); ?>
-<div class="container bcontainer" style="min-height:308px;">
-    <h2>Topic Types List</h2>
+<?php $this->view('backend_header'); ?>
+<!-- Page Content -->
+<div id="page-content-wrapper">
+    <div class="container-fluid">
+        <h2>Topic Types List</h2>
 
     <a href="<?php echo site_url('topic-types/create'); ?>">Create</a>
     <div>
@@ -60,7 +62,7 @@
             </div>
         </div>
     </div>
-    
+    </div>
 </div>
 <?php $this->view('footer'); ?>
 <script type="text/javascript">

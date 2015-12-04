@@ -14,7 +14,8 @@ class DocumentTypes extends CI_Controller {
     public function index() {
         $data['documentTypes'] = $this->DocumentType_model->get_documentTypes();
         $data['topicTypes'] = $this->TopicType_model->get_topicTypes();
-        
+        $session_data = $this->session->userdata('logged_in');
+        $data['username'] = $session_data['username'];
         $this->load->view('documentTypes/index', $data);
     }
     
@@ -32,7 +33,8 @@ class DocumentTypes extends CI_Controller {
         }
         $data['documentTypes'] = $this->db->get_where('documenttype')->result_array();
         $data['topicTypes'] = $this->TopicType_model->get_topicTypes();
-        
+        $session_data = $this->session->userdata('logged_in');
+        $data['username'] = $session_data['username'];
         $this->load->view('documentTypes/index', $data);
     }
     
@@ -55,7 +57,8 @@ class DocumentTypes extends CI_Controller {
         $this->form_validation->set_rules('Color', 'Color', 'required');
         
         $data['topicTypes'] = $this->TopicType_model->get_topicTypes();
-        
+        $session_data = $this->session->userdata('logged_in');
+        $data['username'] = $session_data['username'];
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('documentTypes/create', $data);
         } else {
@@ -93,7 +96,8 @@ class DocumentTypes extends CI_Controller {
         $this->form_validation->set_rules('Name', 'Name', 'required');
         $this->form_validation->set_rules('Color', 'Color', 'required');
         $this->form_validation->set_rules('TopicTypeId', 'TopicTypeId', 'required');
-        
+        $session_data = $this->session->userdata('logged_in');
+        $data['username'] = $session_data['username'];
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('documentTypes/edit', $data);
             return;

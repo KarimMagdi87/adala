@@ -1,7 +1,7 @@
-<?php $this->view('header'); ?>
-
+<?php $this->view('backend_header'); ?>
 <!-- Page Content -->
-    <div class="container">
+<div id="page-content-wrapper">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-8"></div>
 
@@ -44,7 +44,7 @@
             </table>
         </div>
     </div>
-
+</div>
 <?php $this->view('footer'); ?>
 
 <script type="text/javascript">

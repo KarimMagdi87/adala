@@ -1,5 +1,7 @@
-<?php $this->view('header'); ?>
-<div class="container">
+<?php $this->view('backend_header'); ?>
+<!-- Page Content -->
+<div id="page-content-wrapper">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-sm-8 col-md-6 col-md-offset-4">
                 <h1 class="text-center login-title">Update Document Type</h1>
@@ -38,5 +40,6 @@
             </div>
     </div>
     <!-- /.row -->
+</div>
 </div>
 <?php $this->view('footer'); ?>

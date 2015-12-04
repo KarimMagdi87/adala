@@ -32,6 +32,7 @@
 </head>
 
 <body>
+    <div id="wrapper">
 <!-- header -->
 <!--header class="jumbotron">
     <div class="container">

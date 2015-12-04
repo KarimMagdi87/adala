@@ -1,9 +1,7 @@
-<?php $this->view('header'); ?>
-
-<?php //$this->view('admin/nav'); ?>
-
-    <!-- Page Content -->
-    <div class="container">
+<?php $this->view('backend_header'); ?>
+<!-- Page Content -->
+<div id="page-content-wrapper">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6 col-md-4 col-md-offset-4">
                 <h1 class="text-center login-title"></h1>
@@ -51,7 +49,7 @@
     </div>
 
 
-
+</div>
 
 
 <?php $this->view('footer'); ?>

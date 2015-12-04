@@ -12,7 +12,8 @@ class TopicTypes extends CI_Controller {
 
     public function index() {
         $data['topicTypes'] = $this->topicType_model->get_topicTypes();
-
+        $session_data = $this->session->userdata('logged_in');
+        $data['username'] = $session_data['username'];
         $this->load->view('topicTypes/index', $data);
     }
     
@@ -25,7 +26,8 @@ class TopicTypes extends CI_Controller {
             $this->db->like('Color', $this->input->get('color'));
         }
         $data['topicTypes'] = $this->db->get_where('topictype')->result_array();
-
+        $session_data = $this->session->userdata('logged_in');
+        $data['username'] = $session_data['username'];
         $this->load->view('topicTypes/index', $data);
     }
 
@@ -45,7 +47,8 @@ class TopicTypes extends CI_Controller {
 
         $this->form_validation->set_rules('Name', 'Name', 'required');
         $this->form_validation->set_rules('Color', 'Color', 'required');
-
+        $session_data = $this->session->userdata('logged_in');
+        $data['username'] = $session_data['username'];
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('topicTypes/create');
         } else {
@@ -80,7 +83,8 @@ class TopicTypes extends CI_Controller {
         
         $this->form_validation->set_rules('Name', 'Name', 'required');
         $this->form_validation->set_rules('Color', 'Color', 'required');
-        
+        $session_data = $this->session->userdata('logged_in');
+        $data['username'] = $session_data['username'];
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('topicTypes/edit', $data);
             return;

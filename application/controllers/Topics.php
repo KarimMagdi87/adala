@@ -16,7 +16,8 @@ class Topics extends CI_Controller {
         
         $data['topicTypes'] = $this->TopicType_model->get_topicTypes();
         $data['parentTopics'] = $this->topic_model->get_topics();
-        
+        $session_data = $this->session->userdata('logged_in');
+        $data['username'] = $session_data['username'];
         $this->load->view('topics/index', $data);
     }
     
@@ -36,7 +37,8 @@ class Topics extends CI_Controller {
         
         $data['topicTypes'] = $this->TopicType_model->get_topicTypes();
         $data['parentTopics'] = $this->topic_model->get_topics();
-        
+        $session_data = $this->session->userdata('logged_in');
+        $data['username'] = $session_data['username'];
         $this->load->view('topics/index', $data);
     }
     
@@ -59,7 +61,8 @@ class Topics extends CI_Controller {
         
         $data['topicTypes'] = $this->TopicType_model->get_topicTypes();
         $data['parentTopics'] = $this->topic_model->get_topics();
-        
+        $session_data = $this->session->userdata('logged_in');
+        $data['username'] = $session_data['username'];
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('topics/create', $data);
         } else {
@@ -92,7 +95,8 @@ class Topics extends CI_Controller {
         
         $this->form_validation->set_rules('Name', 'Name', 'required');
         $this->form_validation->set_rules('TopicTypeId', 'TopicTypeId', 'required');
-        
+        $session_data = $this->session->userdata('logged_in');
+        $data['username'] = $session_data['username'];
         if ($this->form_validation->run() === FALSE) {
             $this->load->view('topics/edit', $data);
             return;
