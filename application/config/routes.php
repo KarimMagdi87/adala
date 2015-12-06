@@ -82,5 +82,14 @@ $route['document-types/delete/(:any)'] = 'documentTypes/delete/$1';
 $route['document-types/(:any)'] = 'documentTypes/view/$1';
 $route['document-types/view/(:any)'] = 'documentTypes/view/$1';
 
+// Documents
+$route['documents/index'] = 'documents/index';
+$route['documents/create'] = 'documents/create';
+$route['documents/filter'] = 'documents/filter';
+$route['documents/edit/(:any)'] = 'documents/edit/$1';
+$route['documents/edit'] = 'documents/edit';
+$route['documents/delete/(:any)'] = 'documents/delete/$1';
+$route['documents/(:any)'] = 'documents/view/$1';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

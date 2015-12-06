@@ -25,6 +25,9 @@
             <a href="<?php echo site_url('topics'); ?>">Topics</a>
         </li>
         <li>
+            <a href="<?php echo site_url('documents'); ?>">Documents</a>
+        </li>
+        <li>
             <a class="navbar-brand" href="<?php echo site_url('backend/logout'); ?>">خروج</a>
         </li>
     </ul>
