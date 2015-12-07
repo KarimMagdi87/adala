@@ -86,6 +86,7 @@ $route['document-types/view/(:any)'] = 'documentTypes/view/$1';
 $route['documents/index'] = 'documents/index';
 $route['documents/create'] = 'documents/create';
 $route['documents/filter'] = 'documents/filter';
+$route['documents/document-items/(:any)'] = 'documents/getDocumentItems/$1';
 $route['documents/edit/(:any)'] = 'documents/edit/$1';
 $route['documents/edit'] = 'documents/edit';
 $route['documents/delete/(:any)'] = 'documents/delete/$1';

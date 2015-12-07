@@ -6,6 +6,7 @@ class Documents extends CI_Controller {
         parent::__construct();
         $this->load->model('Document_model');
         $this->load->model('DocumentType_model');
+        $this->load->model('DocumentItem_model');
         $this->load->model('Topic_model');
         $this->load->helper('url_helper');
         $this->load->library('pagination');
@@ -117,5 +118,12 @@ class Documents extends CI_Controller {
             redirect('documents/index');
         }
     }
-
+    
+    public function getDocumentItems($documentId) {
+        $data['documentItems'] = $this->db->get_where('documentitem', array('DocumentId' => $documentId))->result_array();
+        
+        $session_data = $this->session->userdata('logged_in');
+        $data['username'] = $session_data['username'];
+        $this->load->view('documents/documentItems', $data);
+    }
 }

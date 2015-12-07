@@ -70,6 +70,7 @@
                             <li><a data-toggle="modal" data-target="#myModal" class="tddocument" id="<?php echo $document['DocumentId']; ?>" href="#">View</a>
                             <li><a href="<?php echo site_url('documents/edit/' . $document['DocumentId']); ?>">Edit</a></li>
                             <li><a href="<?php echo site_url('documents/delete/' . $document['DocumentId']); ?>" onclick="return confirm('Are you sure?')">Delete</a></li>
+                            <li><a href="<?php echo site_url('documents/document-items/' . $document['DocumentId']); ?>">View Document Items</a></li>
                         </ul>
                     </td>
                 </tr>
