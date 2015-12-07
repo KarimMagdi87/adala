@@ -91,5 +91,17 @@ $route['documents/edit'] = 'documents/edit';
 $route['documents/delete/(:any)'] = 'documents/delete/$1';
 $route['documents/(:any)'] = 'documents/view/$1';
 
+// Document Items
+$route['document-items'] = 'documentItems/index';
+$route['document-items/index'] = 'documentItems/index';
+$route['document-items/index/(:any)'] = 'documentItems/index';
+$route['document-items/filter'] = 'documentItems/filter';
+$route['document-items/create'] = 'documentItems/create';
+$route['document-items/edit/(:any)'] = 'documentItems/edit/$1';
+$route['document-items/edit'] = 'documentItems/edit';
+$route['document-items/delete/(:any)'] = 'documentItems/delete/$1';
+$route['document-items/(:any)'] = 'documentItems/view/$1';
+$route['document-items/view/(:any)'] = 'documentItems/view/$1';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

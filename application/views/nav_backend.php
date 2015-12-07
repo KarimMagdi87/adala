@@ -28,6 +28,9 @@
             <a href="<?php echo site_url('documents'); ?>">Documents</a>
         </li>
         <li>
+            <a href="<?php echo site_url('document-items'); ?>">Document Items</a>
+        </li>
+        <li>
             <a class="navbar-brand" href="<?php echo site_url('backend/logout'); ?>">خروج</a>
         </li>
     </ul>

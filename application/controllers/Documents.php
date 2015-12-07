@@ -79,7 +79,6 @@ class Documents extends CI_Controller {
         } else {
             $this->session->set_flashdata('success', "Document #$id has been deleted successfully");
         }
-
         
         redirect('documents/index');
     }
