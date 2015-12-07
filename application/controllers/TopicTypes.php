@@ -50,7 +50,7 @@ class TopicTypes extends CI_Controller {
         $session_data = $this->session->userdata('logged_in');
         $data['username'] = $session_data['username'];
         if ($this->form_validation->run() === FALSE) {
-            $this->load->view('topicTypes/create');
+            $this->load->view('topicTypes/create', $data);
         } else {
             $this->topicType_model->createTopicType();
             $this->session->set_flashdata('success', "Topic type has been created successfully");
