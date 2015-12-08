@@ -20,7 +20,7 @@
         ?>
     </div>
 
-    <table id="documentItems" class="display" cellspacing="0" width="100%">
+    <table id="documentItems" class="display dataTable no-footer" width="100%" cellspacing="0" role="grid" aria-describedby="documentTypes_info" style="width: 100%;">
         <thead>
             <tr>
                 <th>Id</th>
@@ -34,8 +34,9 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($documentItems as $documentItem): ?>
-                <tr>
+            <?php foreach ($documentItems as $key => $documentItem): ?>
+                <?php $class = (0 == $key % 2)? 'even': 'odd'; ?>
+                <tr class="<?php echo $class; ?>">
                     <td><?php echo $documentItem['DocumentItemId']; ?></td>
                     <td><?php echo $documentItem['DocumentId']; ?></td>
                     <td><?php echo $documentItem['ParentItemId']; ?></td>
@@ -54,6 +55,13 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    
+    <?php $start = (is_numeric($this->uri->segment(3))) ? $this->uri->segment(3): 1; ?>
+    <div class="dataTables_paginate paging_simple_numbers" id="documentTypes_paginate">
+        <?php echo $this->pagination->create_links(); ?>
+    </div>
+    <div class="dataTables_info" id="documentTypes_info" role="status" aria-live="polite">Showing <?php echo $start; ?> to <?php echo $start + 19; ?> of <?php echo $total_rows; ?> entries</div>
+    
     
     <!-- Modal -->
     <div id="myModal" class="modal fade" role="dialog">
@@ -77,8 +85,6 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#documentItems').DataTable();
-        
         // Render document type modal
         $(document).on("click", '.tddocument', function (e) {
             e.preventDefault();

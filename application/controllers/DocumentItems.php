@@ -11,8 +11,15 @@ class DocumentItems extends CI_Controller {
         $this->load->library('session');
     }
 
-    public function index() {
-        $data['documentItems'] = $this->DocumentItem_model->get_documentItems();
+    public function index() {$config['base_url'] = '/document-items/index/';
+        $config['per_page'] = 20;
+        $config['total_rows'] = $this->db->get('documentitem')->num_rows();
+        $config['num_links'] = 5;
+
+        $this->pagination->initialize($config);
+
+        $data['total_rows'] = $config['total_rows'];
+        $data['documentItems'] = $this->DocumentItem_model->get_documentItems($config['per_page'], $this->uri->segment(3));
         $data['topicTypes'] = $this->Document_model->get_documents();
         $session_data = $this->session->userdata('logged_in');
         $data['username'] = $session_data['username'];
