@@ -15,7 +15,6 @@ class DocumentItems extends CI_Controller {
         $config['base_url'] = '/document-items/index/';
         $config['per_page'] = 20;
         $config['total_rows'] = $data['total_rows'] = $this->db->get('documentitem')->num_rows();
-        $config['num_links'] = 5;
 
         $this->pagination->initialize($config);
 
@@ -27,12 +26,6 @@ class DocumentItems extends CI_Controller {
     }
     
     public function filter() {
-        $config['base_url'] = '/document-items/index/';
-        $config['per_page'] = 20;
-        $config['total_rows'] = $data['total_rows'] = $this->db->get('documentitem')->num_rows();
-        $config['num_links'] = 5;
-
-        $this->pagination->initialize($config);
         $query = "SELECT * FROM `documentitem` ";
         
         $search = $this->input->get('search');
@@ -44,7 +37,12 @@ class DocumentItems extends CI_Controller {
         }
         
         $data['documentItems'] = $this->db->query($query)->result_array();
-        $data['total_rows'] = count($data['documentItems']);
+        
+        $config['total_rows'] = $data['total_rows'] = count($data['documentItems']);
+        $config['base_url'] = '/document-items/index/';
+        $config['per_page'] = 20;
+
+        $this->pagination->initialize($config);
         
         $data['topicTypes'] = $this->Document_model->get_documents();
         $session_data = $this->session->userdata('logged_in');
