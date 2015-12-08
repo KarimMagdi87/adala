@@ -14,7 +14,15 @@ class Documents extends CI_Controller {
     }
 
     public function index() {
-        $data['documents'] = $this->Document_model->get_documents();
+        $config['base_url'] = '/documents/index/';
+        $config['per_page'] = 20;
+        $config['total_rows'] = $this->db->get('document')->num_rows();
+        $config['num_links'] = 5;
+
+        $this->pagination->initialize($config);
+
+        $data['documents'] = $this->Document_model->get_documents($config['per_page'], $this->uri->segment(3));
+        $data['total_rows'] = $config['total_rows'];
         $data['topics'] = $this->Topic_model->get_topics();
         $session_data = $this->session->userdata('logged_in');
         $data['username'] = $session_data['username'];

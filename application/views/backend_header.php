@@ -14,7 +14,7 @@
 
         <!-- Custom CSS -->
         <link href="<?php echo base_url(); ?>assets/css/simple-sidebar.css" rel="stylesheet">
-
+        <link href="<?php echo base_url(); ?>assets/css/admin_custom.css" rel="stylesheet">
         <!-- Custom CSS -->
     
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.8/datatables.min.css"/>
