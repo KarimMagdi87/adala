@@ -30,20 +30,31 @@ class Documents extends CI_Controller {
     }
     
     public function filter() {
-        if(null != $this->input->get('name') && '' != $this->input->get('name')) {
-            $this->db->like('Name', $this->input->get('name'));
+        $query = "SELECT * FROM `document` ";
+        
+        $search = $this->input->get('search');
+        if(null != $search && '' != $search) {
+            $query = "SELECT * FROM `document` WHERE `DocumentId` LIKE '%" . $search . "%' ESCAPE '!' OR `TopicId` LIKE '%" . $search .
+                    "%' ESCAPE '!' OR `DocumentTypeId` LIKE '%" . $search . "%' ESCAPE '!' OR `ParentDocumentId` LIKE '%" . $search . 
+                    "%' ESCAPE '!' OR `Note` LIKE '%" . $search . "%' ESCAPE '!' OR `Year` LIKE '%" . $search . "%' ESCAPE '!' OR `Publication` LIKE '%" .
+                    $search . "%' ESCAPE '!' OR `Intro` LIKE '%" . $search . "%' ESCAPE '!' OR `Summary` LIKE '%" .
+                    $search . "%' ESCAPE '!' OR `Text` LIKE '%" . $search . "%' ESCAPE '!' OR `Title` LIKE '%" . $search . "%' ESCAPE '!' OR `Number` LIKE '%" . 
+                    $search . "%' ESCAPE '!' OR `EditionNumber` LIKE '%" . $search . "%' ESCAPE '!' OR `DocumentOrder` LIKE '%" . $search . "%' ESCAPE '!' OR `OldId` LIKE '%" . 
+                    $search . "%' ESCAPE '!' OR `HTML` LIKE '%" . $search . "%' ESCAPE '!' OR `IndexId` LIKE '%" . $search . "%' ESCAPE '!'";
+            
+            if(false !== strtotime($search)) {
+                $query .= " OR `Date` LIKE '%" . $search . "%' ESCAPE '!' ";
+            }
+            
         }
         
-        if(null != $this->input->get('topicType') && '' != $this->input->get('topicType')) {
-            $this->db->where('TopicTypeId', $this->input->get('topicType'));
-        }
+        $data['documents'] = $this->db->query($query)->result_array();
         
-        if(null != $this->input->get('color') && '' != $this->input->get('color')) {
-            $this->db->like('Color', $this->input->get('color'));
-        }
-        $data['documentTypes'] = $this->db->get_where('documenttype')->result_array();
-        $data['parentDocuments'] = $this->db->get_where('document')->result_array();
-        $data['topics'] = $this->Topic_model->get_topics();
+        $config['base_url'] = '/documents/index/';
+        $config['per_page'] = 20;
+        $config['total_rows'] = $data['total_rows'] = count($data['documents']);
+        $this->pagination->initialize($config);
+        
         $session_data = $this->session->userdata('logged_in');
         $data['username'] = $session_data['username'];
         $this->load->view('documents/index', $data);

@@ -64,11 +64,14 @@
         </tbody>
     </table>
     
-    <?php $start = (is_numeric($this->uri->segment(3))) ? $this->uri->segment(3): 1; ?>
+    <?php 
+        $start = (is_numeric($this->uri->segment(3))) ? $this->uri->segment(3): 1;
+        $shows = ($total_rows > $start) ? $start + 19 : $total_rows;
+    ?>
     <div class="dataTables_paginate paging_simple_numbers" id="documentTypes_paginate">
         <?php echo $this->pagination->create_links(); ?>
     </div>
-    <div class="dataTables_info" id="documentTypes_info" role="status" aria-live="polite">Showing <?php echo $start; ?> to <?php echo $start + 19; ?> of <?php echo $total_rows; ?> entries</div>
+    <div class="dataTables_info" id="documentTypes_info" role="status" aria-live="polite">Showing <?php echo $start; ?> to <?php echo $shows; ?> of <?php echo $total_rows; ?> entries</div>
     
     
     <!-- Modal -->
