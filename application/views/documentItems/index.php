@@ -2,7 +2,7 @@
 <!-- Page Content -->
 <div id="page-content-wrapper">
     <div class="container-fluid">
-    <h2>Document Types List</h2>
+    <h2>Document Items List</h2>
 
     <a href="<?php echo site_url('document-items/create'); ?>">Create</a>
     <div>
@@ -20,6 +20,12 @@
         ?>
     </div>
 
+    <div id="documentItem_filter" class="dataTables_filter">
+        <form action="<?php echo site_url('document-items/filter'); ?>">
+            <label>Search:<input type="text" name="search" class="" placeholder="" aria-controls="documentItems"></label>
+            <input type="submit" name="submit" value="Search" />
+        </form>
+    </div>
     <table id="documentItems" class="display dataTable no-footer" width="100%" cellspacing="0" role="grid" aria-describedby="documentTypes_info" style="width: 100%;">
         <thead>
             <tr>
@@ -27,6 +33,7 @@
                 <th>Document Id</th>
                 <th>Parent Item Id</th>
                 <th>Title</th>
+                <th>Text</th>
                 <th>Note</th>
                 <th>Item Order</th>
                 <th>Clean Text</th>
@@ -41,6 +48,7 @@
                     <td><?php echo $documentItem['DocumentId']; ?></td>
                     <td><?php echo $documentItem['ParentItemId']; ?></td>
                     <td><?php echo $documentItem['Title']; ?></td>
+                    <td><?php echo $documentItem['Text']; ?></td>
                     <td><?php echo $documentItem['Note']; ?></td>
                     <td><?php echo $documentItem['ItemOrder']; ?></td>
                     <td><?php echo $documentItem['CleanText']; ?></td>

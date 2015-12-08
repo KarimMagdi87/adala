@@ -11,14 +11,14 @@ class DocumentItems extends CI_Controller {
         $this->load->library('session');
     }
 
-    public function index() {$config['base_url'] = '/document-items/index/';
+    public function index() {
+        $config['base_url'] = '/document-items/index/';
         $config['per_page'] = 20;
-        $config['total_rows'] = $this->db->get('documentitem')->num_rows();
+        $config['total_rows'] = $data['total_rows'] = $this->db->get('documentitem')->num_rows();
         $config['num_links'] = 5;
 
         $this->pagination->initialize($config);
 
-        $data['total_rows'] = $config['total_rows'];
         $data['documentItems'] = $this->DocumentItem_model->get_documentItems($config['per_page'], $this->uri->segment(3));
         $data['topicTypes'] = $this->Document_model->get_documents();
         $session_data = $this->session->userdata('logged_in');
@@ -27,18 +27,25 @@ class DocumentItems extends CI_Controller {
     }
     
     public function filter() {
-        if(null != $this->input->get('name') && '' != $this->input->get('name')) {
-            $this->db->like('Name', $this->input->get('name'));
+        $config['base_url'] = '/document-items/index/';
+        $config['per_page'] = 20;
+        $config['total_rows'] = $data['total_rows'] = $this->db->get('documentitem')->num_rows();
+        $config['num_links'] = 5;
+
+        $this->pagination->initialize($config);
+        $query = "SELECT * FROM `documentitem` ";
+        
+        $search = $this->input->get('search');
+        if(null != $search && '' != $search) {
+            $query = "SELECT * FROM `documentitem` "
+                    . "WHERE `DocumentItemId` LIKE '%" . $search . "%' ESCAPE '!' OR `DocumentId` LIKE '%" . $search . "%' ESCAPE '!' OR `ParentItemId` LIKE '%" . 
+                    $search . "%' ESCAPE '!' OR `Title` LIKE '%" . $search . "%' ESCAPE '!' OR `Text` LIKE '%" . $search . "%' ESCAPE '!' OR `Note` LIKE '%" . $search . 
+                    "%' ESCAPE '!' OR `ItemOrder` LIKE '%" . $search . "%' ESCAPE '!' OR `CleanText` LIKE '%" . $search . "%' ESCAPE '!' ";
         }
         
-        if(null != $this->input->get('topicType') && '' != $this->input->get('topicType')) {
-            $this->db->where('TopicTypeId', $this->input->get('topicType'));
-        }
+        $data['documentItems'] = $this->db->query($query)->result_array();
+        $data['total_rows'] = count($data['documentItems']);
         
-        if(null != $this->input->get('color') && '' != $this->input->get('color')) {
-            $this->db->like('Color', $this->input->get('color'));
-        }
-        $data['documentItems'] = $this->db->get_where('documentitem')->result_array();
         $data['topicTypes'] = $this->Document_model->get_documents();
         $session_data = $this->session->userdata('logged_in');
         $data['username'] = $session_data['username'];
